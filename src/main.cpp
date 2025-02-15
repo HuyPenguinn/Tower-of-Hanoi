@@ -13,16 +13,17 @@ std :: vector <int> col3;
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 SDL_Event event;
-SDL_Texture *background = NULL;
+SDL_Texture *pole = NULL;
 
-SDL_Rect rect1 = {20, 410, 260, 50};
-SDL_Rect rect2 = {40, 360, 220, 50};
+SDL_Rect rect5 = {20, 410, 260, 50};
+SDL_Rect rect4 = {40, 360, 220, 50};
 SDL_Rect rect3 = {60, 310, 180, 50};
-SDL_Rect rect4 = {80, 260, 140, 50};
-SDL_Rect rect5 = {100, 210, 100, 50};
+SDL_Rect rect2 = {80, 260, 140, 50};
+SDL_Rect rect1 = {100, 210, 100, 50};
 
 void Init();
 void CleanUp();
+void BlendRect(SDL_Rect *rct, int r, int g, int b);
 
 int main(int argc,char **argv){
    
@@ -35,16 +36,15 @@ int main(int argc,char **argv){
                 isRunning = false;
             }
         }
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_SetRenderDrawColor(renderer, 180, 220, 255, 255);
         SDL_RenderClear(renderer);
-        SDL_RenderCopy(renderer, background, NULL, NULL);
+        SDL_RenderCopy(renderer, pole, NULL, NULL);
 
-        SDL_SetRenderDrawColor(renderer, 255, 230, 153, 255);
-        SDL_RenderFillRect(renderer, &rect1);
-        SDL_RenderFillRect(renderer, &rect2);
-        SDL_RenderFillRect(renderer, &rect3);
-        SDL_RenderFillRect(renderer, &rect4);
-        SDL_RenderFillRect(renderer, &rect5);
+        BlendRect(&rect1, 255, 230, 153);
+        BlendRect(&rect2, 255, 215, 128);
+        BlendRect(&rect3, 255, 200, 102);
+        BlendRect(&rect4, 255, 185, 77);
+        BlendRect(&rect5, 255, 170, 51);
 
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
@@ -72,17 +72,22 @@ void Init(){
         std :: cout << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std :: endl;
     }
     std::string BasePath = SDL_GetBasePath();
-    background = IMG_LoadTexture(renderer, (BasePath + "/data/image/background.png").c_str());
-    if(background == NULL){
+    pole = IMG_LoadTexture(renderer, (BasePath + "/data/image/background.png").c_str());
+    if(pole == NULL){
         std :: cout << "Background could not be created! SDL_Error: " << SDL_GetError() << std :: endl;
     }
 }
 
 void CleanUp(){
-    SDL_DestroyTexture(background);
+    SDL_DestroyTexture(pole);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     IMG_Quit();
     SDL_Quit();
 
+}
+
+void BlendRect(SDL_Rect *rct, int r, int g, int b){
+    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
+    SDL_RenderFillRect(renderer, rct);
 }
