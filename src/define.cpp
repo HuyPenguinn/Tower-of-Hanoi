@@ -7,7 +7,8 @@ std::string BasePath = SDL_GetBasePath();
 
 Pole pol1, pol2, pol3;
 int CurrentDisk = 0;
-
+bool isRunning = true;
+int isHolding = 0;
 
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;

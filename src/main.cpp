@@ -4,9 +4,6 @@
 int main(int argc,char **argv){
     
     Init();
-
-    bool isRunning = true;
-    int isHolding = 0;
     while(isRunning){
 
         if(TmpRect == NULL) TmpRect = new SDL_Rect;
@@ -28,7 +25,7 @@ int main(int argc,char **argv){
                             isHolding = 1;
                             CurrentDisk = pol1.num[pol1.num.size() - 1];
                             pol1.num.pop_back();
-                            pol1.disks[pol1.disks.size() - 1].y = 100;
+                            // pol1.disks[pol1.disks.size() - 1].y = 100;
                             *TmpRect = pol1.disks[pol1.disks.size() - 1];
                             pol1.disks.pop_back();
                         }
@@ -37,7 +34,7 @@ int main(int argc,char **argv){
                             isHolding = 2;
                             CurrentDisk = pol2.num[pol2.num.size() - 1];
                             pol2.num.pop_back();
-                            pol2.disks[pol2.disks.size() - 1].y = 100;
+                            // pol2.disks[pol2.disks.size() - 1].y = 100;
                             *TmpRect = pol2.disks[pol2.disks.size() - 1];
                             pol2.disks.pop_back();
                         }
@@ -46,7 +43,7 @@ int main(int argc,char **argv){
                             isHolding = 3;
                             CurrentDisk = pol3.num[pol3.num.size() - 1];
                             pol3.num.pop_back();
-                            pol3.disks[pol3.disks.size() - 1].y = 100;
+                            // pol3.disks[pol3.disks.size() - 1].y = 100;
                             *TmpRect = pol3.disks[pol3.disks.size() - 1];
                             pol3.disks.pop_back();
                         }
@@ -65,6 +62,21 @@ int main(int argc,char **argv){
                                     (*TmpRect).x = 120 - CurrentDisk * 20;
                                     (*TmpRect).y = 460 - pol1.num.size() * 50;
                                     pol1.disks.push_back(*TmpRect);
+                                    TmpRect = NULL;
+                                }
+                            }else{
+                                if(isHolding == 1){
+                                    pol1.num.push_back(CurrentDisk);
+                                    pol1.disks.push_back(*TmpRect);
+                                    // pol1.disks[pol1.disks.size() - 1].y = 460 - pol1.num.size() * 50;
+                                }else if(isHolding == 2){
+                                    pol2.num.push_back(CurrentDisk);
+                                    pol2.disks.push_back(*TmpRect);
+                                    // pol2.disks[pol2.disks.size() - 1].y = 460 - pol2.num.size() * 50;
+                                }else if(isHolding == 3){
+                                    pol3.num.push_back(CurrentDisk);
+                                    pol3.disks.push_back(*TmpRect);
+                                    // pol3.disks[pol3.disks.size() - 1].y = 460 - pol3.num.size() * 50;                          
                                 }
                             }
                             CurrentDisk = 0;
@@ -76,10 +88,25 @@ int main(int argc,char **argv){
                                     (*TmpRect).x = 420 - CurrentDisk * 20;
                                     (*TmpRect).y = 460 - pol2.num.size() * 50;
                                     pol2.disks.push_back(*TmpRect);
+                                    TmpRect = NULL;
                                 }
-                                CurrentDisk = 0;
-                                isHolding = false;
+                            }else{
+                                if(isHolding == 1){
+                                    pol1.num.push_back(CurrentDisk);
+                                    pol1.disks.push_back(*TmpRect);
+                                    // pol1.disks[pol1.disks.size() - 1].y = 460 - pol1.num.size() * 50;
+                                }else if(isHolding == 2){
+                                    pol2.num.push_back(CurrentDisk);
+                                    pol2.disks.push_back(*TmpRect);
+                                    // pol2.disks[pol2.disks.size() - 1].y = 460 - pol2.num.size() * 50;
+                                }else if(isHolding == 3){
+                                    pol3.num.push_back(CurrentDisk);
+                                    pol3.disks.push_back(*TmpRect);
+                                    // pol3.disks[pol3.disks.size() - 1].y = 460 - pol3.num.size() * 50;
+                                }
                             }
+                            CurrentDisk = 0;
+                            isHolding = false;
                         }else if(x >= 600 && y >= 80 && y <= 460){
                             if(pol3.num.size() == 0 || CurrentDisk < pol3.num.back()){
                                 pol3.num.push_back(CurrentDisk);
@@ -87,30 +114,40 @@ int main(int argc,char **argv){
                                     (*TmpRect).x = 720 - CurrentDisk * 20;
                                     (*TmpRect).y = 460 - pol3.num.size() * 50;
                                     pol3.disks.push_back(*TmpRect);
+                                    TmpRect = NULL;
                                 }
-                                CurrentDisk = 0;
-                                isHolding = false;
+                            }else{
+                                if(isHolding == 1){
+                                    pol1.num.push_back(CurrentDisk);
+                                    pol1.disks.push_back(*TmpRect);
+                                    // pol1.disks[pol1.disks.size() - 1].y = 460 - pol1.num.size() * 50;
+                                }else if(isHolding == 2){
+                                    pol2.num.push_back(CurrentDisk);
+                                    pol2.disks.push_back(*TmpRect);
+                                    // pol2.disks[pol2.disks.size() - 1].y = 460 - pol2.num.size() * 50;
+                                }else if(isHolding == 3){
+                                    pol3.num.push_back(CurrentDisk);
+                                    pol3.disks.push_back(*TmpRect);
+                                    // pol3.disks[pol3.disks.size() - 1].y = 460 - pol3.num.size() * 50;
+                                }
                             }
+                            CurrentDisk = 0;
+                            isHolding = false;
                         }else{
                             if(isHolding == 1){
-                                CurrentDisk = 0;
-                                isHolding = false;
                                 pol1.num.push_back(CurrentDisk);
-                                pol1.disks.push_back(*DefineRect());
-                                pol1.disks[pol1.disks.size() - 1].y = 410 - pol1.num.size() * 50;
+                                pol1.disks.push_back(*TmpRect);
+                                pol1.disks[pol1.disks.size() - 1].y = 460 - pol1.num.size() * 50;
                             }else if(isHolding == 2){
                                 pol2.num.push_back(CurrentDisk);
-                                CurrentDisk = 0;
-                                isHolding = false;
-                                pol2.disks.push_back(*DefineRect());
-                                pol2.disks[pol2.disks.size() - 1].y = 410 - pol2.num.size() * 50;
+                                pol2.disks.push_back(*TmpRect);
+                                pol2.disks[pol2.disks.size() - 1].y = 460 - pol2.num.size() * 50;
                             }else if(isHolding == 3){
                                 pol3.num.push_back(CurrentDisk);
-                                CurrentDisk = 0;
-                                isHolding = false;
-                                pol3.disks.push_back(*DefineRect());
-                                pol3.disks[pol3.disks.size() - 1].y = 410 - pol3.num.size() * 50;
+                                pol3.disks.push_back(*TmpRect);
+                                pol3.disks[pol3.disks.size() - 1].y = 460 - pol3.num.size() * 50;
                             }
+                            CurrentDisk = 0;
                             isHolding = 0;
                         }
                     }

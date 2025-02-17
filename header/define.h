@@ -29,11 +29,10 @@ extern SDL_Texture *Disks;
 extern SDL_Texture *RedPole, *GreenPole;
 extern std::string BasePath;
 extern int CurrentDisk;
+extern bool isRunning;
+extern int isHolding;
 
 void Init();
 void CleanUp();
-void BlendRect(SDL_Rect *rct, int r, int g, int b);
-void DrawDisk(int n);
 void DrawAllDisks();
-SDL_Rect *DefineRect();
 SDL_Rect *SrcRect(int n);
