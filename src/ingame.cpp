@@ -1,7 +1,88 @@
 #include "define.h"
 
+void CheckValidMove(){
+    if(x >= 0 && x < 300 && y >= 80 && y <= 460){
+        target = 1;
+        switch(isHolding){
+            case 1:
+                ValidDrop = true;
+                break;
+            case 2:
+                if(pol1.num.size() == 0 || CurrentDisk < pol1.num.back()){
+                    ValidDrop = true;
+                }else{
+                    ValidDrop = false;
+                }
+                break;
+            case 3:
+                if(pol1.num.size() == 0 || CurrentDisk < pol1.num.back()){
+                    ValidDrop = true;
+                }else{
+                    ValidDrop = false;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    else if(x >= 300 && x < 600 && y >= 80 && y <= 460){
+        target = 2;
+        switch(isHolding){
+            case 1:
+                if(pol2.num.size() == 0 || CurrentDisk < pol2.num.back()){
+                    ValidDrop = true;
+                }else{
+                    ValidDrop = false;
+                }
+                break;
+            case 2:
+                ValidDrop = true;
+                break;
+            case 3:
+                if(pol2.num.size() == 0 || CurrentDisk < pol2.num.back()){
+                    ValidDrop = true;
+                }else{
+                    ValidDrop = false;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    else if(x >= 600 && y >= 80 && y <= 460){
+        target = 3;
+        switch(isHolding){
+            case 1:
+                if(pol3.num.size() == 0 || CurrentDisk < pol3.num.back()){
+                    ValidDrop = true;
+                }else{
+                    ValidDrop = false;
+                }
+                break;
+            case 2:
+                if(pol3.num.size() == 0 || CurrentDisk < pol3.num.back()){
+                    ValidDrop = true;
+                }else{
+                    ValidDrop = false;
+                }
+                break;
+            case 3:
+                ValidDrop = true;
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        target = 0;
+    }
+}
+
+bool Win(){
+    return pol3.num.size() == 5 && pol1.num.size() == 0 && pol2.num.size() == 0;
+}
+
 void HoldingProcess(){
-    SDL_GetMouseState(&x, &y);
     if(x >= 0 && x < 300 && y >= 80 && y <= 460){
         if(pol1.num.size() > 0){
             isHolding = 1;
@@ -18,7 +99,7 @@ void HoldingProcess(){
             *TmpRect = pol2.disks[pol2.disks.size() - 1];
             pol2.disks.pop_back();
         }
-    }else if(x >= 600 && y >= 80 && y <= 460){
+    }else if(x >= 600 && y >= 80 && y <= 460 && !Win()){
         if(pol3.num.size() > 0){
             isHolding = 3;
             CurrentDisk = pol3.num[pol3.num.size() - 1];
@@ -30,11 +111,11 @@ void HoldingProcess(){
 }
 
 void DroppingProcess(){
-    SDL_GetMouseState(&x, &y);
     if(isHolding){
         if(x >= 0 && x < 300 && y >= 80 && y <= 460){
             if(pol1.num.size() == 0 || CurrentDisk < pol1.num.back()){
                 pol1.num.push_back(CurrentDisk);
+                MoveCount++;
                 if(TmpRect != NULL){
                     (*TmpRect).x = 120 - CurrentDisk * 20;
                     (*TmpRect).y = 460 - pol1.num.size() * 50;
@@ -55,6 +136,7 @@ void DroppingProcess(){
         }else if(x >= 300 && x < 600 && y >= 80 && y <= 460){
             if(pol2.num.size() == 0 || CurrentDisk < pol2.num.back()){
                 pol2.num.push_back(CurrentDisk);
+                MoveCount++;
                 if(TmpRect != NULL){
                     (*TmpRect).x = 420 - CurrentDisk * 20;
                     (*TmpRect).y = 460 - pol2.num.size() * 50;
@@ -75,6 +157,7 @@ void DroppingProcess(){
         }else if(x >= 600 && y >= 80 && y <= 460){
             if(pol3.num.size() == 0 || CurrentDisk < pol3.num.back()){
                 pol3.num.push_back(CurrentDisk);
+                MoveCount++;
                 if(TmpRect != NULL){
                     (*TmpRect).x = 720 - CurrentDisk * 20;
                     (*TmpRect).y = 460 - pol3.num.size() * 50;
@@ -111,6 +194,27 @@ void DroppingProcess(){
             }
             CurrentDisk = 0;
             isHolding = 0;
+        }
+    }
+}
+
+void EventProcess(){
+    while(SDL_PollEvent(&event)){
+        if(event.type == SDL_QUIT){
+            isRunning = false;
+        }
+        if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT){
+            if(Win()){
+                Restart();
+            }else{
+                HoldingProcess();
+            }
+        }
+        if(event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT){
+            DroppingProcess();
+        }
+        if(event.type == SDL_MOUSEMOTION){
+            CheckValidMove();
         }
     }
 }

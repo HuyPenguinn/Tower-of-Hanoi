@@ -153,3 +153,39 @@ void DrawPole(bool isValid, int n){
         }
     }
 }
+
+void DrawCursor(){
+    SDL_GetMouseState(&x, &y);
+    CursorRect.x = x;
+    CursorRect.y = y;
+    SDL_RenderCopy(renderer, ColoredPole, &CursorSrc, &CursorRect);
+}
+
+void DrawColoredPole(){
+    if(isHolding && isHolding != target){
+        switch(target){
+            case 1:
+                DrawPole(ValidDrop, 1);
+                break;
+            case 2:
+                DrawPole(ValidDrop, 2);
+                break;
+            case 3:
+                DrawPole(ValidDrop, 3);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void DrawStar(int MoveCount){
+    if(MoveCount == 31){
+        // 3 stars
+    }else if(MoveCount <= 36){
+        // 2 stars
+    }else{
+        // 1 star
+    }
+    return;
+}
