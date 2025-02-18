@@ -28,14 +28,81 @@ int main(int argc,char **argv){
             }
             if(event.type == SDL_MOUSEMOTION){
                 SDL_GetMouseState(&x, &y);
-                if(x >= 0 && x < 300 && y >= 80 && y <= 460)
+                if(x >= 0 && x < 300 && y >= 80 && y <= 460){
                     target = 1;
-                else if(x >= 300 && x < 600 && y >= 80 && y <= 460)
+                    switch(isHolding){
+                        case 1:
+                            ValidDrop = true;
+                            break;
+                        case 2:
+                            if(pol1.num.size() == 0 || CurrentDisk < pol1.num.back()){
+                                ValidDrop = true;
+                            }else{
+                                ValidDrop = false;
+                            }
+                            break;
+                        case 3:
+                            if(pol1.num.size() == 0 || CurrentDisk < pol1.num.back()){
+                                ValidDrop = true;
+                            }else{
+                                ValidDrop = false;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if(x >= 300 && x < 600 && y >= 80 && y <= 460){
                     target = 2;
-                else if(x >= 600 && y >= 80 && y <= 460)
+                    switch(isHolding){
+                        case 1:
+                            if(pol2.num.size() == 0 || CurrentDisk < pol2.num.back()){
+                                ValidDrop = true;
+                            }else{
+                                ValidDrop = false;
+                            }
+                            break;
+                        case 2:
+                            ValidDrop = true;
+                            break;
+                        case 3:
+                            if(pol2.num.size() == 0 || CurrentDisk < pol2.num.back()){
+                                ValidDrop = true;
+                            }else{
+                                ValidDrop = false;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if(x >= 600 && y >= 80 && y <= 460){
                     target = 3;
-                else
+                    switch(isHolding){
+                        case 1:
+                            if(pol3.num.size() == 0 || CurrentDisk < pol3.num.back()){
+                                ValidDrop = true;
+                            }else{
+                                ValidDrop = false;
+                            }
+                            break;
+                        case 2:
+                            if(pol3.num.size() == 0 || CurrentDisk < pol3.num.back()){
+                                ValidDrop = true;
+                            }else{
+                                ValidDrop = false;
+                            }
+                            break;
+                        case 3:
+                            ValidDrop = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else{
                     target = 0;
+                }
             }
         }
 
