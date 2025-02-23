@@ -2,122 +2,46 @@
 
 void DrawAllDisks(){
     int id = 15;
-    for(int i = 0; i < pol1.num.size(); i++){
-        SDL_RenderCopy(renderer, Disks, SrcRect(pol1.num[i]), &pol1.disks[i]);
-        id -= pol1.num[i];
-    }
-    for(int i = 0; i < pol2.num.size(); i++){
-        SDL_RenderCopy(renderer, Disks, SrcRect(pol2.num[i]), &pol2.disks[i]);
-        id -= pol2.num[i];
-    }
-    for(int i = 0; i < pol3.num.size(); i++){
-        SDL_RenderCopy(renderer, Disks, SrcRect(pol3.num[i]), &pol3.disks[i]);
-        id -= pol3.num[i];
+    for(int k = 0; k < 3; k++){
+        for(int i = 0; i < poles[k].num.size(); i++){
+            SDL_RenderCopy(renderer, Disks, SrcRect(poles[k].num[i]), &(poles[k].disks[i]));
+            id -= poles[k].num[i];
+        }
     }
     switch(id){
         case 1:
-            switch(isHolding){
-                case 1:
-                    rect1.x = 100;
-                    rect1.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk1, &rect1);
-                    break;
-                case 2:
-                    rect1.x = 400;
-                    rect1.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk1, &rect1);
-                    break;
-                case 3:
-                    rect1.x = 700;
-                    rect1.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk1, &rect1);
-                    break;
-                default:
-                    break;
+            if(isHolding){
+                rect1.x = 120 + (isHolding - 1) * 300 - id * 20;
+                rect1.y = 100;
+                SDL_RenderCopy(renderer, Disks, &Disk1, &rect1);
             }
             break;
         case 2:
-            switch(isHolding){
-                case 1:
-                    rect2.x = 80;
-                    rect2.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk2, &rect2);
-                    break;
-                case 2:
-                    rect2.x = 380;
-                    rect2.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk2, &rect2);
-                    break;
-                case 3:
-                    rect2.x = 680;
-                    rect2.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk2, &rect2);
-                    break;
-                default:
-                    break;
+            if(isHolding){
+                rect2.x = 120 + (isHolding - 1) * 300 - id * 20;
+                rect2.y = 100;
+                SDL_RenderCopy(renderer, Disks, &Disk2, &rect2);
             }
             break;
         case 3:
-            switch(isHolding){
-                case 1:
-                    rect3.x = 60;
-                    rect3.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk3, &rect3);
-                    break;
-                case 2:
-                    rect3.x = 360;
-                    rect3.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk3, &rect3);
-                    break;
-                case 3:
-                    rect3.x = 660;
-                    rect3.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk3, &rect3);
-                    break;
-                default:
-                    break;
+            if(isHolding){    
+                rect3.x = 120 + (isHolding - 1) * 300 - id * 20;
+                rect3.y = 100;
+                SDL_RenderCopy(renderer, Disks, &Disk3, &rect3);
             }
             break;
         case 4:
-            switch(isHolding){
-                case 1:
-                    rect4.x = 40;
-                    rect4.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk4, &rect4);
-                    break;
-                case 2:
-                    rect4.x = 340;
-                    rect4.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk4, &rect4);
-                    break;
-                case 3:
-                    rect4.x = 640;
-                    rect4.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk4, &rect4);
-                    break;
-                default:
-                    break;
+            if(isHolding){
+                rect4.x = 120 + (isHolding - 1) * 300 - id * 20;
+                rect4.y = 100;
+                SDL_RenderCopy(renderer, Disks, &Disk4, &rect4);
             }
             break;
         case 5:
-            switch(isHolding){
-                case 1:
-                    rect5.x = 20;
-                    rect5.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk5, &rect5);
-                    break;
-                case 2:
-                    rect5.x = 320;
-                    rect5.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk5, &rect5);
-                    break;
-                case 3:
-                    rect5.x = 620;
-                    rect5.y = 100;
-                    SDL_RenderCopy(renderer, Disks, &Disk5, &rect5);
-                    break;
-                default:
-                    break;
+            if(isHolding){
+                rect5.x = 120 + (isHolding - 1) * 300 - id * 20;
+                rect5.y = 100;
+                SDL_RenderCopy(renderer, Disks, &Disk5, &rect5);
             }
             break;
         default:
@@ -154,11 +78,14 @@ void DrawPole(bool isValid, int n){
     }
 }
 
-void DrawCursor(){
+void DrawCursor(bool closing){
     SDL_GetMouseState(&x, &y);
     CursorRect.x = x;
     CursorRect.y = y;
-    SDL_RenderCopy(renderer, ColoredPole, &CursorSrc, &CursorRect);
+    if(closing)
+        SDL_RenderCopy(renderer, Cursor, &CloseCursorSrc, &CursorRect);
+    else
+        SDL_RenderCopy(renderer, Cursor, &OpenCursorSrc, &CursorRect);
 }
 
 void DrawColoredPole(){
@@ -181,11 +108,10 @@ void DrawColoredPole(){
 
 void DrawStar(int MoveCount){
     if(MoveCount == 31){
-        // 3 stars
+        SDL_RenderCopy(renderer, ThreeStar, NULL, NULL);
     }else if(MoveCount <= 36){
-        // 2 stars
+        SDL_RenderCopy(renderer, TwoStar, NULL, NULL);
     }else{
-        // 1 star
+        SDL_RenderCopy(renderer, OneStar, NULL, NULL);
     }
-    return;
 }

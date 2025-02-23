@@ -7,21 +7,25 @@ void InitSDL(){
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
+    
+    Cursor = IMG_LoadTexture(renderer, (BasePath + "/data/image/cursor.png").c_str());
     Disks = IMG_LoadTexture(renderer, (BasePath + "/data/image/disks.png").c_str());
     Background = IMG_LoadTexture(renderer, (BasePath + "/data/image/background.png").c_str());
     ColoredPole = IMG_LoadTexture(renderer, (BasePath + "/data/image/poles.png").c_str());
     WinTexture = IMG_LoadTexture(renderer, (BasePath + "/data/image/win.png").c_str());
+    OneStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/1star.png").c_str());
+    TwoStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/2stars.png").c_str());
+    ThreeStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/3stars.png").c_str());
     SDL_ShowCursor(SDL_DISABLE);
 }
 
 void InitPoles(){
-    pol1.num = {5, 4, 3, 2, 1};
-    pol2.num = {};
-    pol3.num = {};
-    pol1.disks = {rect5, rect4, rect3, rect2, rect1};
-    pol2.disks = {};
-    pol3.disks = {};
+    poles[0].num = {5, 4, 3, 2, 1};
+    poles[1].num = {};
+    poles[2].num = {};
+    poles[0].disks = {rect5, rect4, rect3, rect2, rect1};
+    poles[1].disks = {};
+    poles[2].disks = {};
 }
 
 void CleanUp(){
@@ -43,6 +47,8 @@ void Restart(){
     isHolding = 0;
     CurrentDisk = 0;
     ValidDrop = true;
+    delete TmpRect;
+    TmpRect = new SDL_Rect;
 }
 
 void Quit(){
