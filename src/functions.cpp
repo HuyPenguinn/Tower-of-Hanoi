@@ -1,4 +1,4 @@
-#include "define.h"
+#include "def.h"
 
 void InitSDL(){
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -32,6 +32,11 @@ void CleanUp(){
     SDL_DestroyTexture(Background);
     SDL_DestroyTexture(Disks);
     SDL_DestroyTexture(ColoredPole);
+    SDL_DestroyTexture(Cursor);
+    SDL_DestroyTexture(WinTexture);
+    SDL_DestroyTexture(OneStar);
+    SDL_DestroyTexture(TwoStar);
+    SDL_DestroyTexture(ThreeStar);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 }

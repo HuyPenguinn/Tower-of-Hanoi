@@ -1,4 +1,4 @@
-#include "define.h"
+#include "def.h"
 int main(int argc,char **argv){
 //////////          INITIALIZATION          //////////
     InitSDL();
@@ -6,7 +6,9 @@ int main(int argc,char **argv){
 
 //////////          GAMELOOP          //////////
     while(isRunning){
-        if(TmpRect == NULL) TmpRect = new SDL_Rect;
+        // if(TmpRect == NULL)
+        //     TmpRect = new SDL_Rect;
+        // cerr << TmpRect << endl;
         SDL_SetRenderDrawColor(renderer, 135, 206, 235, 255);
         SDL_RenderClear(renderer);
 
@@ -15,7 +17,8 @@ int main(int argc,char **argv){
     //////////          DRAW          //////////
         DrawColoredPole();
         DrawAllDisks();
-        cerr << MoveCount << endl;
+        // cerr << MoveCount << endl;
+
     //////////          WIN          //////////
         if(GameMode == "NORMAL"){
             if(Win()){
@@ -41,11 +44,9 @@ int main(int argc,char **argv){
             }
             if(event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT){
                 OpeningCursor = true;
+                
                 DroppingProcess();
             }
-            // if(event.type == SDL_MOUSEMOTION){
-            //     DrawCursor(isHolding);
-            // }
         }
 
         CheckValidMove();

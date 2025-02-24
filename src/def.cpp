@@ -1,4 +1,4 @@
-#include "define.h"
+#include "def.h"
 
 const int SCREEN_WIDTH = 900;
 const int SCREEN_HEIGHT = 500;

@@ -49,7 +49,7 @@ Sau khi tải về, thêm đường dẫn `lib` và `include` của các thư vi
 ### 1. Quy tắc chung
 - Chỉ có thể di chuyển một đĩa một lần.
 - Không được đặt đĩa lớn hơn lên đĩa nhỏ hơn.
-- Mục tiêu: Di chuyển tất cả đĩa từ cột đầu tiên sang một cột khác.
+- Mục tiêu: Di chuyển tất cả đĩa từ cột đầu tiên sang cột cuối cùng thông qua cột trung gian.
 
 ### 2. Chế độ chơi
 #### **Chế độ thường**

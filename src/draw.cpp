@@ -1,4 +1,4 @@
-#include "define.h"
+#include "def.h"
 
 void DrawAllDisks(){
     int id = 15;
