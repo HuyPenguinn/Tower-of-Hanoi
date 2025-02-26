@@ -3,6 +3,8 @@
 void InitSDL(){
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    
     window = SDL_CreateWindow("Tower of Hanoi", 
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -16,6 +18,7 @@ void InitSDL(){
     OneStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/1star.png").c_str());
     TwoStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/2stars.png").c_str());
     ThreeStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/3stars.png").c_str());
+    BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic.mp3").c_str());
     SDL_ShowCursor(SDL_DISABLE);
 }
 
@@ -52,13 +55,22 @@ void Restart(){
     isHolding = 0;
     CurrentDisk = 0;
     ValidDrop = true;
-    delete TmpRect;
-    TmpRect = new SDL_Rect;
 }
 
 void Quit(){
     IMG_Quit();
     SDL_Quit();
+}
+
+void DebugNum(){
+    
+    for(int k = 0; k < 3; k++){
+        for(int i = 0; i < poles[k].num.size(); i++){
+            cout << poles[k].num[i] << " ";
+        }
+        cout << "| ";
+    }
+    cout << endl;
 }
 
 SDL_Rect* SrcRect(int n){

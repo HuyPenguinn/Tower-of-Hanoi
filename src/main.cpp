@@ -6,13 +6,14 @@ int main(int argc,char **argv){
 
 //////////          GAMELOOP          //////////
     while(isRunning){
-        // if(TmpRect == NULL)
-        //     TmpRect = new SDL_Rect;
-        // cerr << TmpRect << endl;
         SDL_SetRenderDrawColor(renderer, 135, 206, 235, 255);
         SDL_RenderClear(renderer);
 
         SDL_RenderCopy(renderer, Background, NULL, NULL);
+        
+        if(Mix_PlayingMusic() == 0){
+            Mix_PlayMusic(BG_music, -1);
+        }else Mix_ResumeMusic();
 
     //////////          DRAW          //////////
         DrawColoredPole();
@@ -47,7 +48,14 @@ int main(int argc,char **argv){
                 
                 DroppingProcess();
             }
+            if(event.type == SDL_KEYDOWN){
+                if(event.key.keysym.sym == SDLK_r){
+                    Restart();
+                }
+            }
         }
+
+        // DebugNum();
 
         CheckValidMove();
         DrawCursor(!OpeningCursor);

@@ -1,1 +1,2 @@
+SpeedRunUnlocked = "0"
 GameMode = "NORMAL"

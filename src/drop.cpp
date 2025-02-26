@@ -22,12 +22,13 @@ void DroppingProcess(){
     }
     else { // Invalid Space to drop
         // cout << isHolding - 1;
-        poles[isHolding].num.push_back(CurrentDisk);
-        
-        poles[isHolding].disks.push_back(*TmpRect);
-        
-        poles[isHolding].disks[poles[isHolding].disks.size()].y = 460 - poles[isHolding].num.size() * 50 ;
+        if(CurrentDisk){
+            poles[isHolding].num.push_back(CurrentDisk);
+            poles[isHolding].disks.push_back(*TmpRect);    
+            poles[isHolding].disks[poles[isHolding].disks.size()].y = 460 - poles[isHolding].num.size() * 50 ;
+        }
     }
+
     CurrentDisk = 0;
     isHolding = 0;
     ValidDrop = false;

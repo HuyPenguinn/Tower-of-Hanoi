@@ -5,10 +5,8 @@ void HoldingProcess(){
         if(poles[0].num.size() > 0){
             isHolding = 1;
             CurrentDisk = poles[0].num[poles[0].num.size() - 1];
-            poles[0].num.pop_back();
-            
+            poles[0].num.pop_back();            
             *TmpRect = poles[0].disks[poles[0].disks.size() - 1];
-            
             poles[0].disks.pop_back();
         }
     }else if(x >= 300 && x < 600 && y >= 80 && y <= 460){
