@@ -19,6 +19,7 @@ void InitSDL(){
     TwoStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/2stars.png").c_str());
     ThreeStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/3stars.png").c_str());
     BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic.mp3").c_str());
+    DropSound = Mix_LoadWAV((BasePath + "/data/audio/Droplet.wav").c_str());
     SDL_ShowCursor(SDL_DISABLE);
 }
 
@@ -32,6 +33,9 @@ void InitPoles(){
 }
 
 void CleanUp(){
+    Mix_FreeMusic(BG_music);
+    Mix_FreeChunk(DropSound);
+    
     SDL_DestroyTexture(Background);
     SDL_DestroyTexture(Disks);
     SDL_DestroyTexture(ColoredPole);

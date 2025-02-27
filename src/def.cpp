@@ -16,6 +16,7 @@ int x, y, MoveCount = 0;
 
 SDL_Window *window = NULL;
 Mix_Music *BG_music = NULL;
+Mix_Chunk *DropSound = NULL;
 SDL_Renderer *renderer = NULL;
 SDL_Event event;
 SDL_Texture *Background = NULL;

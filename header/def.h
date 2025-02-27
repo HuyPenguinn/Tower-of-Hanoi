@@ -24,6 +24,8 @@ extern SDL_Window *window;
 extern SDL_Renderer *renderer;
 extern SDL_Event event;
 extern Mix_Music *BG_music;
+extern Mix_Chunk *DropSound;
+extern Mix_Chunk *WinSound;
 extern SDL_Texture *Background;
 extern SDL_Texture *Cursor;
 extern SDL_Rect *TmpRect;

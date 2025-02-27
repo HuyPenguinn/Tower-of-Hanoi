@@ -13,6 +13,8 @@ void DroppingProcess(){
                 // TmpRect = NULL;
             }
             
+            Mix_PlayChannel(-1, DropSound, 0);
+            
         }else{// Return to the original pole
             
             poles[isHolding - 1].num.push_back(CurrentDisk);

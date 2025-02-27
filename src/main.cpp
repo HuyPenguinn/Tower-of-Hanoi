@@ -15,10 +15,11 @@ int main(int argc,char **argv){
             Mix_PlayMusic(BG_music, -1);
         }else Mix_ResumeMusic();
 
+        Mix_VolumeMusic(40);
+
     //////////          DRAW          //////////
         DrawColoredPole();
         DrawAllDisks();
-        // cerr << MoveCount << endl;
 
     //////////          WIN          //////////
         if(GameMode == "NORMAL"){
@@ -45,12 +46,14 @@ int main(int argc,char **argv){
             }
             if(event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT){
                 OpeningCursor = true;
-                
                 DroppingProcess();
             }
             if(event.type == SDL_KEYDOWN){
                 if(event.key.keysym.sym == SDLK_r){
                     Restart();
+                }
+                if(event.key.keysym.sym == SDLK_q){
+                    isRunning = false;
                 }
             }
         }
