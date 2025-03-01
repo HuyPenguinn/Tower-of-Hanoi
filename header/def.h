@@ -6,7 +6,6 @@
 #include "SDL2/SDL_image.h"
 #include "SDL2/SDL_mixer.h"
 #include "SDL2/SDL_ttf.h"
-using namespace std;
 
 class Pole{
     public:
@@ -31,10 +30,13 @@ extern SDL_Texture *Cursor;
 extern SDL_Rect *TmpRect;
 extern SDL_Rect rect5, rect4, rect3, rect2, rect1, Disk1, Disk2, Disk3, Disk4, Disk5;
 extern SDL_Rect RedPoleSrc, GreenPoleSrc, OpenCursorSrc, CloseCursorSrc;
-extern SDL_Rect FirstPole, SecondPole, ThirdPole, CursorRect;
+extern SDL_Rect FirstPole, SecondPole, ThirdPole, CursorRect, RestartRect, textRect;
 extern const int SCREEN_WIDTH, SCREEN_HEIGHT;
 extern std::vector <int> col1, col2, col3;
 extern SDL_Texture *Disks;
+extern SDL_Texture *textTexture;
+extern SDL_Texture *RestartButtonUp;
+extern SDL_Texture *RestartButtonDown;
 extern SDL_Texture *ColoredPole;
 extern SDL_Texture *WinTexture;
 extern SDL_Texture *OneStar;
@@ -42,25 +44,37 @@ extern SDL_Texture *TwoStar;
 extern SDL_Texture *ThreeStar;
 extern std::string BasePath;
 extern std::string GameMode;
+extern std::string CursorConfig;
 extern int CurrentDisk;
-extern bool isRunning, ValidDrop, OpeningCursor;
+extern bool isRunning, ValidDrop, OpeningCursor, RestartClicked;
 extern int isHolding, target, x, y, MoveCount;
+extern SDL_Color textColor;
+extern TTF_Font *font;
+extern SDL_Surface *textSurface;
 
 void InitSDL();
 void InitPoles();
-void EventProcess();
+void LoadMedia();
+void GetConfig();
+
+void __Background();
+
+void DrawStar(int MoveCount);
 void DrawColoredPole();
 void DrawCursor(bool isHolding);
-void CleanUp();
 void DrawAllDisks();
-void MoveUpdate();
-void DrawStar(int MoveCount);
+void DrawPole(bool isRed, int n);
+void DrawMoveCount();
+
 void HoldingProcess();
 void DroppingProcess();
-void DrawPole(bool isRed, int n);
+void MoveUpdate();
 void CheckValidMove();
+
+void CleanUp();
+bool Win();
 void Quit();
 void Restart();
-bool Win();
+
 void DebugNum();
 SDL_Rect *SrcRect(int n);

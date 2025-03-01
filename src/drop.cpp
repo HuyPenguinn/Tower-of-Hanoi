@@ -23,7 +23,6 @@ void DroppingProcess(){
         }
     }
     else { // Invalid Space to drop
-        // cout << isHolding - 1;
         if(CurrentDisk){
             poles[isHolding].num.push_back(CurrentDisk);
             poles[isHolding].disks.push_back(*TmpRect);    

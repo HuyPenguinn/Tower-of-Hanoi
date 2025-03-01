@@ -106,6 +106,12 @@ void DrawColoredPole(){
     }
 }
 
+void DrawMoveCount(){
+    SDL_Rect textRect = {20, 20, textSurface->w, textSurface->h};
+    textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+}
+
 void DrawStar(int MoveCount){
     if(MoveCount == 31){
         SDL_RenderCopy(renderer, ThreeStar, NULL, NULL);

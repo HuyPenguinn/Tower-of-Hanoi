@@ -4,12 +4,13 @@ const int SCREEN_WIDTH = 900;
 const int SCREEN_HEIGHT = 500;
 
 std::string BasePath = SDL_GetBasePath();
-std::string GameMode = "NORMAL";
+std::string GameMode = "";
+std::string CursorConfig = "";
 
 Pole poles[3];
 
 int CurrentDisk = 0;
-bool isRunning = true, ValidDrop = true, OpeningCursor = true;
+bool isRunning = true, ValidDrop = true, OpeningCursor = true, RestartClicked = false;
 int isHolding = 0;
 int target = 0;
 int x, y, MoveCount = 0;
@@ -17,8 +18,11 @@ int x, y, MoveCount = 0;
 SDL_Window *window = NULL;
 Mix_Music *BG_music = NULL;
 Mix_Chunk *DropSound = NULL;
+Mix_Chunk *WinSound = NULL;
 SDL_Renderer *renderer = NULL;
 SDL_Event event;
+SDL_Texture *RestartButtonUp = NULL;
+SDL_Texture *RestartButtonDown = NULL;
 SDL_Texture *Background = NULL;
 SDL_Texture *Disks = NULL;
 SDL_Texture *WinTexture = NULL;
@@ -27,6 +31,12 @@ SDL_Texture *OneStar = NULL;
 SDL_Texture *TwoStar = NULL;
 SDL_Texture *ThreeStar = NULL;
 SDL_Texture *Cursor = NULL;
+SDL_Texture *textTexture = NULL;
+SDL_Surface *textSurface = NULL;
+
+
+SDL_Color textColor = {255, 255, 255, 255};
+TTF_Font *font = NULL;
 
 //crop the image
 SDL_Rect Disk1 = {0, 50, 100, 50};
@@ -38,8 +48,9 @@ SDL_Rect RedPoleSrc = {0, 40, 40, 300};
 SDL_Rect GreenPoleSrc = {40, 40, 40, 300};
 SDL_Rect OpenCursorSrc = {0, 0, 40, 60};
 SDL_Rect CloseCursorSrc = {50, 0, 40, 60};
+SDL_Rect RestartRect = {840, 20, 40, 40};
 
-SDL_Rect CursorRect = {x + 20, y + 30, 40, 60};
+SDL_Rect CursorRect = {x - 20, y - 30, 40, 60};
 SDL_Rect FirstPole = {130, 160, 40, 300};
 SDL_Rect SecondPole = {430, 160, 40, 300};
 SDL_Rect ThirdPole = {730, 160, 40, 300};
