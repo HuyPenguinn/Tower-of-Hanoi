@@ -112,6 +112,13 @@ void DrawMoveCount(){
     SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 }
 
+void DrawTime(unsigned long long time){
+    textSurface = TTF_RenderText_Solid(font, SetPrecison(time / 1000.0).c_str(), textColor);
+    SDL_Rect textRect = {20, 20, textSurface->w, textSurface->h};
+    textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+}
+
 void DrawStar(int MoveCount){
     if(MoveCount == 31){
         SDL_RenderCopy(renderer, ThreeStar, NULL, NULL);
@@ -120,4 +127,10 @@ void DrawStar(int MoveCount){
     }else{
         SDL_RenderCopy(renderer, OneStar, NULL, NULL);
     }
+}
+void DrawTimeScore(unsigned long long time){
+    ScoreSurface = TTF_RenderText_Solid(font, SetPrecison(time / 1000.0).c_str(), scoreColor);
+    ScoreTexture = SDL_CreateTextureFromSurface(renderer, ScoreSurface);
+    SDL_Rect TimeScoreRect = {SCREEN_WIDTH / 2 -  ScoreSurface->w , SCREEN_HEIGHT / 2 + ScoreSurface->h , ScoreSurface->w * 2, ScoreSurface->h * 2};
+    SDL_RenderCopy(renderer, ScoreTexture, NULL, &TimeScoreRect);
 }

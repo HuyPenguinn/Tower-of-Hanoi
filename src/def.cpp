@@ -6,9 +6,10 @@ const int SCREEN_HEIGHT = 500;
 std::string BasePath = SDL_GetBasePath();
 std::string GameMode = "";
 std::string CursorConfig = "";
+std::string GUI = "MainGameplay";
 
 Pole poles[3];
-
+unsigned long long StartTime = 0, CurrentTime = 0;
 int CurrentDisk = 0;
 bool isRunning = true, ValidDrop = true, OpeningCursor = true, RestartClicked = false;
 int isHolding = 0;
@@ -32,10 +33,11 @@ SDL_Texture *TwoStar = NULL;
 SDL_Texture *ThreeStar = NULL;
 SDL_Texture *Cursor = NULL;
 SDL_Texture *textTexture = NULL;
+SDL_Texture *ScoreTexture = NULL;
 SDL_Surface *textSurface = NULL;
+SDL_Surface *ScoreSurface = NULL;
 
-
-SDL_Color textColor = {255, 255, 255, 255};
+SDL_Color textColor = {255, 255, 255, 255}, scoreColor = {255, 0, 0, 255};
 TTF_Font *font = NULL;
 
 //crop the image

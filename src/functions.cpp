@@ -1,5 +1,5 @@
 #include "def.h"
-
+#include <iomanip>
 void InitSDL(){
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
@@ -28,6 +28,7 @@ void CleanUp(){
     Mix_FreeChunk(DropSound);
     TTF_CloseFont(font);
     SDL_FreeSurface(textSurface);
+    SDL_FreeSurface(ScoreSurface);
     SDL_DestroyTexture(textTexture);
     SDL_DestroyTexture(Background);
     SDL_DestroyTexture(Disks);
@@ -44,6 +45,7 @@ void CleanUp(){
 }
 
 void Restart(){
+    StartTime = SDL_GetTicks();
     RestartClicked = true;
     rect1 = {100, 210, 100, 50};
     rect2 = {80, 260, 140, 50};
@@ -74,6 +76,12 @@ void DebugNum(){
         std::cout << "| ";
     }
     std::cout << std::endl;
+}
+
+std::string SetPrecison(double n){
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(1) << n;
+    return ss.str();
 }
 
 SDL_Rect* SrcRect(int n){

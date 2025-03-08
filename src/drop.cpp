@@ -10,7 +10,6 @@ void DroppingProcess(){
                 TmpRect->x = 120 + (target - 1) * 300 - CurrentDisk * 20;
                 TmpRect->y = 460 - poles[target - 1].num.size() * 50;
                 poles[target - 1].disks.push_back(*TmpRect);
-                // TmpRect = NULL;
             }
             
             Mix_PlayChannel(-1, DropSound, 0);
