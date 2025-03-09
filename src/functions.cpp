@@ -46,6 +46,7 @@ void CleanUp(){
 
 void Restart(){
     StartTime = SDL_GetTicks();
+    GAMESTARTED = false;
     RestartClicked = true;
     rect1 = {100, 210, 100, 50};
     rect2 = {80, 260, 140, 50};

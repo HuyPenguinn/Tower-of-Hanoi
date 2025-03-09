@@ -49,7 +49,7 @@ extern std::string GameMode;
 extern std::string GUI;
 extern std::string CursorConfig;
 extern int CurrentDisk;
-extern bool isRunning, ValidDrop, OpeningCursor, RestartClicked;
+extern bool isRunning, ValidDrop, OpeningCursor, RestartClicked, GAMESTARTED;
 extern int isHolding, target, x, y, MoveCount;
 extern SDL_Color textColor, scoreColor;
 extern TTF_Font *font;

@@ -1,11 +1,15 @@
 #include "def.h"
 
 void Toolbar(){
+    SDL_Rect HUDRect = {0, 0, 900, 80};
+    SDL_SetRenderDrawColor(renderer, 0, 191, 255, 255);
+    SDL_RenderFillRect(renderer, &HUDRect);
     if(RestartClicked) SDL_RenderCopy(renderer, RestartButtonDown, NULL, &RestartRect);
     else SDL_RenderCopy(renderer, RestartButtonUp, NULL, &RestartRect);
 
-    if(!Win() && GameMode == "SPEEDRUN"){ 
-        CurrentTime = SDL_GetTicks() - StartTime;
+    if(!Win() && GameMode == "SPEEDRUN" ){ 
+        if(GAMESTARTED) CurrentTime = SDL_GetTicks() - StartTime;
+        else CurrentTime = 0;
         DrawTime(CurrentTime);
     }else if(!Win() && GameMode == "NORMAL"){
         textSurface = TTF_RenderText_Solid(font, std::to_string(MoveCount).c_str(), textColor);

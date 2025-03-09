@@ -12,6 +12,7 @@ Pole poles[3];
 unsigned long long StartTime = 0, CurrentTime = 0;
 int CurrentDisk = 0;
 bool isRunning = true, ValidDrop = true, OpeningCursor = true, RestartClicked = false;
+bool GAMESTARTED = false;
 int isHolding = 0;
 int target = 0;
 int x, y, MoveCount = 0;

@@ -1,10 +1,10 @@
 #include "def.h"
 
 void MainGameplay(){
+    
     __Background();
     DrawColoredPole();
     DrawAllDisks();
-    
 
 //////////          WIN          //////////
     if(GameMode == "NORMAL"){
