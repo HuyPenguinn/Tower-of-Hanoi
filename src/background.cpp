@@ -2,7 +2,8 @@
 
 void Toolbar(){
     SDL_Rect HUDRect = {0, 0, 900, 80};
-    SDL_SetRenderDrawColor(renderer, 0, 191, 255, 255);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(renderer, 0, 191, 255, 100);
     SDL_RenderFillRect(renderer, &HUDRect);
     if(RestartClicked) SDL_RenderCopy(renderer, RestartButtonDown, NULL, &RestartRect);
     else SDL_RenderCopy(renderer, RestartButtonUp, NULL, &RestartRect);
@@ -18,8 +19,10 @@ void Toolbar(){
 }
 
 void __Background(){
-    SDL_RenderCopy(renderer, Background, NULL, NULL);
 
+    SDL_RenderCopy(renderer, CloudBackground, NULL, NULL);
+    SDL_RenderCopy(renderer, Background, NULL, NULL);
+    
     Toolbar();
     
     if(Mix_PlayingMusic() == 0){

@@ -33,6 +33,7 @@ SDL_Texture *OneStar = NULL;
 SDL_Texture *TwoStar = NULL;
 SDL_Texture *ThreeStar = NULL;
 SDL_Texture *Cursor = NULL;
+SDL_Texture *CloudBackground = NULL;
 SDL_Texture *textTexture = NULL;
 SDL_Texture *ScoreTexture = NULL;
 SDL_Surface *textSurface = NULL;

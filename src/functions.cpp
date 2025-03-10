@@ -30,6 +30,8 @@ void CleanUp(){
     SDL_FreeSurface(textSurface);
     SDL_FreeSurface(ScoreSurface);
     SDL_DestroyTexture(textTexture);
+    SDL_DestroyTexture(ScoreTexture);
+    SDL_DestroyTexture(CloudBackground);
     SDL_DestroyTexture(Background);
     SDL_DestroyTexture(Disks);
     SDL_DestroyTexture(ColoredPole);
