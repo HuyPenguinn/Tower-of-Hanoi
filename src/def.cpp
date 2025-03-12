@@ -7,8 +7,6 @@
 const int SCREEN_WIDTH = 900;
 const int SCREEN_HEIGHT = 500;
 
-std::string BasePath = SDL_GetBasePath();
-
 Pole poles[3];
 unsigned long long StartTime = 0, CurrentTime = 0;
 int CurrentDisk = 0;

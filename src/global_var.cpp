@@ -11,9 +11,12 @@ TTF_Font* nullFont = nullptr;
 SDL_Event event;
 SDL_Window *window = nullWindow;
 SDL_Renderer *renderer = nullRenderer;
-
+std::string BasePath = SDL_GetBasePath();
+std::string MaxStar = "";
 std::string GameMode = "";
 std::string CursorConfig = "";
+std::string BackgroundMusicConfig = "";
+std::string SoundEffectConfig = "";
 std::string GUI = "MainMenu";
 bool GAMESTARTED = false;
 int isHolding = 0;

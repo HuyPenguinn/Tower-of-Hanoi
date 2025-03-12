@@ -14,7 +14,7 @@ void DroppingProcess(){
                 poles[target - 1].disks.push_back(*TmpRect);
             }
             
-            Mix_PlayChannel(-1, DropSound, 0);
+            if(SoundEffectConfig == "ON") Mix_PlayChannel(-1, DropSound, 0);
             
         }else{// Return to the original pole
             

@@ -7,14 +7,21 @@
 void GetConfig(){
     std::ifstream ifs((BasePath + "/data/config.txt").c_str());
     std::string s;
-    getline(ifs, s);// GameMode
+    getline(ifs, s);//Max Star
     for(int i = 12; i < s.size() - 1; i++){
-        GameMode += s[i];
+        MaxStar += s[i];
     }
-    // std::cout << GameMode << std::endl;
     getline(ifs, s);// CursorConfig
     for(int i = 10; i < s.size() - 1; i++){
         CursorConfig += s[i];
+    }
+    getline(ifs, s); // Background Music
+    for(int i = 20; i < s.size() - 1; i++){
+        BackgroundMusicConfig += s[i];
+    }
+    getline(ifs, s); // Sound Effect
+    for(int i = 16; i < s.size() - 1; i++){
+        SoundEffectConfig += s[i];
     }
     ifs.close();
 }
@@ -79,42 +86,30 @@ void LoadMenuBackground(){
 void LoadMenuButtons(){
     StartButtonUp = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/StartButtonUp.png").c_str());
     StartButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/StartButtonDown.png").c_str());
+    
     OptionsButtonUp = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/OptionsButtonUp.png").c_str());
     OptionsButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/OptionsButtonDown.png").c_str());
+    
     HowToPlayButtonUp = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/HowToPlayButtonUp.png").c_str());
     HowToPlayButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/HowToPlayButtonDown.png").c_str());
     
+    BackButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/BackButton.png").c_str());
+    BackButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/BackButtonDown.png").c_str());
+    
+    NormalButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/NormalButton.png").c_str());
+    NormalButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/NormalButtonDown.png").c_str());
+    
+    if(MaxStar == "3") SpeedrunButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/SpeedrunButton.png").c_str());
+    else SpeedrunButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/LockedSpeedrunButton.png").c_str());
+    SpeedrunButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/SpeedrunButtonDown.png").c_str());
 }
 void LoadMedia(){
-
+    LoadClouds();
+    LoadMenuBackground();
+    LoadMenuButtons();
 
     if(CursorConfig == "Default") SDL_ShowCursor(SDL_DISABLE);
     else if(CursorConfig == "Window") SDL_ShowCursor(SDL_ENABLE);
     if(CursorConfig == "Default") Cursor = IMG_LoadTexture(renderer, (BasePath + "/data/image/cursor.png").c_str());
-    
-    
-    font = TTF_OpenFont((BasePath + "/data/font/8514oem.ttf").c_str(), 32);
-    
-    Disks = IMG_LoadTexture(renderer, (BasePath + "/data/image/disks.png").c_str());
-    LoadClouds();
-    LoadMenuBackground();
-    LoadMenuButtons();
-    Background = IMG_LoadTexture(renderer, (BasePath + "/data/image/background.png").c_str());
-    
 
-    RestartButtonUp = IMG_LoadTexture(renderer, (BasePath + "/data/image/restart.png").c_str());
-    RestartButtonDown = IMG_LoadTexture(renderer, (BasePath + "/data/image/restart_down.png").c_str());
-
-    ColoredPole = IMG_LoadTexture(renderer, (BasePath + "/data/image/poles.png").c_str());
-    WinTexture = IMG_LoadTexture(renderer, (BasePath + "/data/image/win.png").c_str());
-    OneStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/1star.png").c_str());
-    TwoStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/2stars.png").c_str());
-    ThreeStar = IMG_LoadTexture(renderer, (BasePath + "/data/image/3stars.png").c_str());
-    
-    if(GameMode == "NORMAL") BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic.mp3").c_str());
-    else if(GameMode == "SPEEDRUN") BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic2.mp3").c_str());
-
-    DropSound = Mix_LoadWAV((BasePath + "/data/audio/Droplet.wav").c_str());
-
-    // MenuBackground = IMG_LoadTexture(renderer,)
 }

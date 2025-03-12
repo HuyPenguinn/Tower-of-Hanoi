@@ -10,9 +10,13 @@ extern SDL_Window *window;
 extern SDL_Renderer *renderer;
 extern SDL_Event event;
 extern int x, y;
+extern std::string MaxStar;
 extern std::string GameMode;
 extern std::string CursorConfig;
+extern std::string BackgroundMusicConfig;
+extern std::string SoundEffectConfig;
 extern std::string GUI;
+extern std::string BasePath;
 
 extern bool isRunning, ValidDrop, OpeningCursor, RestartClicked, GAMESTARTED;
 extern int isHolding, target, MoveCount;

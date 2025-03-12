@@ -1,4 +1,4 @@
-GameMode = "SPEEDRUN"
+Max Star = "1"
 Cursor = "Window"
-Music = "ON"
+Background Music = "ON"
 Sound Effect = "ON"

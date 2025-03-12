@@ -25,7 +25,6 @@ extern std::vector <int> col1, col2, col3;
 extern std::string BasePath;
 extern int CurrentDisk;
 extern int CloudID;
-// extern SDL_Color textColor, scoreColor;
 
 void HoldingProcess();
 void DroppingProcess();

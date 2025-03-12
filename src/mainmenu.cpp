@@ -63,7 +63,7 @@ void MainMenu(){
        
         if(event.type == SDL_MOUSEBUTTONUP){
             if(isClickingStartButton){
-                GUI = "MainGameplay";
+                GUI = "ChooseGamemode";
                 isClickingStartButton = false;
             }else if(isClickingOptionsButton){
                 GUI = "Config";

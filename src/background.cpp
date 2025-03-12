@@ -28,10 +28,10 @@ void __Background(){
     SDL_RenderCopy(renderer, Background, nullRect, nullRect);
     
     Toolbar();
-    
-    if(Mix_PlayingMusic() == 0){
-        Mix_PlayMusic(BG_music, -1);
-    }else Mix_ResumeMusic();
-
-    Mix_VolumeMusic(40);
+    if(BackgroundMusicConfig == "ON"){
+        if(Mix_PlayingMusic() == 0){
+            Mix_PlayMusic(BG_music, -1);
+        }else Mix_ResumeMusic();
+        Mix_VolumeMusic(40);
+    }
 }
