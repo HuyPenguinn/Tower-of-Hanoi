@@ -1,3 +1,4 @@
+#include "global_var.h"
 #include "def.h"
 
 void CheckValidMove(){

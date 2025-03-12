@@ -1,10 +1,13 @@
-#include "def.h"
+#include <windows.h>
+#include "main.h"
 int main(int argc,char **argv){
+    // FreeConsole();
+
 //////////          INITIALIZATION          //////////
     InitSDL();
     InitPoles();
-    GetConfig();
     LoadMedia();
+    GetConfig();
 
 //////////          GAMELOOP          //////////
     while(isRunning){
@@ -16,18 +19,16 @@ int main(int argc,char **argv){
             MainGameplay();
         }
         else if(GUI == "MainMenu"){
-            // Start Menu
+            MainMenu();
         }
         else if(GUI == "Config"){
             // Config Window:
             // - GameMode
             // - CursorConfig
+            Config();
         }
-        else if(GUI == "Achievement"){
-            // Achievement Window
-        }
-        else if(GUI == "Credit"){
-            // Credit Window
+        else if(GUI == "HowToPlay"){
+            // HowToPlay Window
         }
 
 

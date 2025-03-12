@@ -1,4 +1,6 @@
+#include "global_var.h"
 #include "def.h"
+#include "draw.h"
 #include <iomanip>
 void InitSDL(){
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -24,6 +26,14 @@ void InitPoles(){
 }
 
 void CleanUp(){
+    delete nullFont;
+    delete nullMusic;
+    delete nullChunk;
+    delete nullWindow;
+    delete nullRect;
+    delete nullRenderer;
+    delete nullSurface;
+    delete nullTexture;
     Mix_FreeMusic(BG_music);
     Mix_FreeChunk(DropSound);
     TTF_CloseFont(font);
@@ -47,7 +57,7 @@ void CleanUp(){
 }
 
 void Restart(){
-    StartTime = SDL_GetTicks();
+    StartTime = SDL_GetTicks() % 1000000000;
     GAMESTARTED = false;
     RestartClicked = true;
     rect1 = {100, 210, 100, 50};

@@ -1,4 +1,4 @@
-GameMode = "NORMAL"
+GameMode = "SPEEDRUN"
 Cursor = "Window"
 Music = "ON"
 Sound Effect = "ON"

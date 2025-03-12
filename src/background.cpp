@@ -1,15 +1,19 @@
+#include "global_var.h"
 #include "def.h"
+// #include "draw.h"
+#include "media.h"
+#include "draw.h"
 
 void Toolbar(){
     SDL_Rect HUDRect = {0, 0, 900, 80};
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetRenderDrawColor(renderer, 0, 191, 255, 100);
     SDL_RenderFillRect(renderer, &HUDRect);
-    if(RestartClicked) SDL_RenderCopy(renderer, RestartButtonDown, NULL, &RestartRect);
-    else SDL_RenderCopy(renderer, RestartButtonUp, NULL, &RestartRect);
+    if(RestartClicked) SDL_RenderCopy(renderer, RestartButtonDown, nullRect, &RestartRect);
+    else SDL_RenderCopy(renderer, RestartButtonUp, nullRect, &RestartRect);
 
     if(!Win() && GameMode == "SPEEDRUN" ){ 
-        if(GAMESTARTED) CurrentTime = SDL_GetTicks() - StartTime;
+        if(GAMESTARTED) CurrentTime = SDL_GetTicks() % 1000000000 - StartTime;
         else CurrentTime = 0;
         DrawTime(CurrentTime);
     }else if(!Win() && GameMode == "NORMAL"){
@@ -20,8 +24,8 @@ void Toolbar(){
 
 void __Background(){
 
-    SDL_RenderCopy(renderer, CloudBackground, NULL, NULL);
-    SDL_RenderCopy(renderer, Background, NULL, NULL);
+    SDL_RenderCopy(renderer, CloudBackground, nullRect, nullRect);
+    SDL_RenderCopy(renderer, Background, nullRect, nullRect);
     
     Toolbar();
     

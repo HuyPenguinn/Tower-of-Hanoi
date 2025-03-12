@@ -1,5 +1,7 @@
+#include "global_var.h"
 #include "def.h"
-
+#include "gameplay.h"
+#include "draw.h"
 void MainGameplay(){
     
     __Background();
@@ -7,20 +9,14 @@ void MainGameplay(){
     DrawAllDisks();
 
 //////////          WIN          //////////
-    if(GameMode == "NORMAL"){
-        if(Win()){
-            SDL_RenderCopy(renderer, WinTexture, NULL, NULL);
-            DrawStar(MoveCount);
-        }
+    if (Win()) {
+        SDL_RenderCopy(renderer, WinTexture, nullRect, nullRect); 
+
+        if (GameMode == "NORMAL") DrawStar(MoveCount);
+        else if (GameMode == "SPEEDRUN") DrawTimeScore(CurrentTime);
         
-    }else if(GameMode == "SPEEDRUN"){
-        // Speedrun mode
-        
-        if(Win()){
-            SDL_RenderCopy(renderer, WinTexture, NULL, NULL);
-            DrawTimeScore(CurrentTime);
-        }
     }
+
 
 //////////          EVENT          //////////
     while(SDL_PollEvent(&event)){

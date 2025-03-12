@@ -1,46 +1,17 @@
+#include "global_var.h"
 #include "def.h"
+#include "draw.h"
+#include "win.h"
+#include "gameplay.h"
 
 const int SCREEN_WIDTH = 900;
 const int SCREEN_HEIGHT = 500;
 
 std::string BasePath = SDL_GetBasePath();
-std::string GameMode = "";
-std::string CursorConfig = "";
-std::string GUI = "MainGameplay";
 
 Pole poles[3];
 unsigned long long StartTime = 0, CurrentTime = 0;
 int CurrentDisk = 0;
-bool isRunning = true, ValidDrop = true, OpeningCursor = true, RestartClicked = false;
-bool GAMESTARTED = false;
-int isHolding = 0;
-int target = 0;
-int x, y, MoveCount = 0;
-
-SDL_Window *window = NULL;
-Mix_Music *BG_music = NULL;
-Mix_Chunk *DropSound = NULL;
-Mix_Chunk *WinSound = NULL;
-SDL_Renderer *renderer = NULL;
-SDL_Event event;
-SDL_Texture *RestartButtonUp = NULL;
-SDL_Texture *RestartButtonDown = NULL;
-SDL_Texture *Background = NULL;
-SDL_Texture *Disks = NULL;
-SDL_Texture *WinTexture = NULL;
-SDL_Texture *ColoredPole = NULL;
-SDL_Texture *OneStar = NULL;
-SDL_Texture *TwoStar = NULL;
-SDL_Texture *ThreeStar = NULL;
-SDL_Texture *Cursor = NULL;
-SDL_Texture *CloudBackground = NULL;
-SDL_Texture *textTexture = NULL;
-SDL_Texture *ScoreTexture = NULL;
-SDL_Surface *textSurface = NULL;
-SDL_Surface *ScoreSurface = NULL;
-
-SDL_Color textColor = {255, 255, 255, 255}, scoreColor = {255, 0, 0, 255};
-TTF_Font *font = NULL;
 
 //crop the image
 SDL_Rect Disk1 = {0, 50, 100, 50};
