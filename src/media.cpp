@@ -8,6 +8,8 @@ TTF_Font *font = nullFont;
 
 SDL_Texture *RestartButtonUp = nullTexture;
 SDL_Texture *RestartButtonDown = nullTexture;
+SDL_Texture *HomeButtonUp = nullTexture;
+SDL_Texture *HomeButtonDown = nullTexture;
 SDL_Texture *Background = nullTexture;
 SDL_Texture *Disks = nullTexture;
 SDL_Texture *WinTexture = nullTexture;

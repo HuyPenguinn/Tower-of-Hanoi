@@ -12,6 +12,8 @@ extern SDL_Texture *textTexture;
 extern SDL_Texture *ScoreTexture;
 extern SDL_Texture *RestartButtonUp;
 extern SDL_Texture *RestartButtonDown;
+extern SDL_Texture *HomeButtonUp;
+extern SDL_Texture *HomeButtonDown;
 extern SDL_Texture *ColoredPole;
 extern SDL_Texture *WinTexture;
 extern SDL_Texture *OneStar;

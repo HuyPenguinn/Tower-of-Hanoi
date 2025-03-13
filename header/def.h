@@ -18,7 +18,7 @@ extern Pole poles[3];
 
 extern SDL_Rect rect5, rect4, rect3, rect2, rect1, Disk1, Disk2, Disk3, Disk4, Disk5;
 extern SDL_Rect RedPoleSrc, GreenPoleSrc, OpenCursorSrc, CloseCursorSrc;
-extern SDL_Rect FirstPole, SecondPole, ThirdPole, CursorRect, RestartRect, textRect, TimeScoreRect;
+extern SDL_Rect FirstPole, SecondPole, ThirdPole, CursorRect, textRect, TimeScoreRect;
 extern const int SCREEN_WIDTH, SCREEN_HEIGHT;
 extern unsigned long long StartTime, CurrentTime;
 extern std::vector <int> col1, col2, col3;

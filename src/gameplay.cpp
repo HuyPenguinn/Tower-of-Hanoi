@@ -10,6 +10,8 @@ void LoadGameplayMedia(){
     
     Background = IMG_LoadTexture(renderer, (BasePath + "/data/image/background.png").c_str());
     
+    HomeButtonUp = IMG_LoadTexture(renderer, (BasePath + "/data/image/HomeButton.png").c_str());
+    HomeButtonDown = IMG_LoadTexture(renderer, (BasePath + "/data/image/HomeButtonDown.png").c_str());
 
     RestartButtonUp = IMG_LoadTexture(renderer, (BasePath + "/data/image/restart.png").c_str());
     RestartButtonDown = IMG_LoadTexture(renderer, (BasePath + "/data/image/restart_down.png").c_str());
@@ -49,22 +51,32 @@ void MainGameplay(){
         }
         if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT){
             OpeningCursor = false;
-            if(x >= 840 && x <= 880 && y >= 20 && y <= 60){// Restart button
-                Mix_PlayChannel(-1, DropSound, 0);
-                Restart();
-                continue;
-            }
             if(Win()){
                 Restart();
+                continue;
             }else{
                 HoldingProcess();
             }
+            if(x >= 840 && x <= 880 && y >= 20 && y <= 60){// Restart button
+                if(SoundEffectConfig != "0"){
+                    Mix_VolumeChunk(DropSound, to_int(SoundEffectConfig));
+                    Mix_PlayChannel(-1, DropSound, 0);
+                }
+                Restart();
+                isClickingRestartButton = true;
+            }else if(x >= 780 && x <= 820 && y >= 20 && y <= 60){// Home button
+                isCLickingHomeButton = true;
+            }
+            
         }
         if(event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT){
             OpeningCursor = true;
-            if(RestartClicked){
-                RestartClicked = false;
-                continue;
+            if(isClickingRestartButton){
+                isClickingRestartButton = false;
+            }
+            if(isCLickingHomeButton){
+                GUI = "MainMenu";
+                isCLickingHomeButton = false;
             }
             SDL_GetMouseState(&x, &y);
             DroppingProcess();
@@ -72,7 +84,7 @@ void MainGameplay(){
         if(event.type == SDL_KEYDOWN){
             if(event.key.keysym.sym == SDLK_r){
                 Restart();
-                RestartClicked = false;
+                isClickingRestartButton = false;
             }
             if(event.key.keysym.sym == SDLK_q){
                 isRunning = false;

@@ -8,6 +8,7 @@ SDL_Texture *NormalButtonDown = nullTexture;
 
 SDL_Texture *SpeedrunButton = nullTexture;
 SDL_Texture *SpeedrunButtonDown = nullTexture;
+SDL_Texture *LockedSpeedrunButton = nullTexture;
 
 SDL_Texture *BackButton = nullTexture;
 SDL_Texture *BackButtonDown = nullTexture;
@@ -22,10 +23,11 @@ void DrawGamemodeButtons(){
     SDL_Rect BackButtonRect = {260, 400, 380, 60};
     if(!isClickingNormalButton) SDL_RenderCopy(renderer, NormalButton, nullRect, &NormalButtonRect);
     else SDL_RenderCopy(renderer, NormalButtonDown, nullRect, &NormalButtonRect);
-    
-    if(MaxStar == "3" && !isClickingSpeedrunButton) SDL_RenderCopy(renderer, SpeedrunButton, nullRect, &SpeedrunButtonRect);
+    if(MaxStar == "3" && !isClickingSpeedrunButton){
+        SDL_RenderCopy(renderer, SpeedrunButton, nullRect, &SpeedrunButtonRect);
+    }
     else if(MaxStar == "3" && isClickingSpeedrunButton) SDL_RenderCopy(renderer, SpeedrunButtonDown, nullRect, &SpeedrunButtonRect);
-    else SDL_RenderCopy(renderer, SpeedrunButton, nullRect, &SpeedrunButtonRect);
+    else SDL_RenderCopy(renderer, LockedSpeedrunButton, nullRect, &SpeedrunButtonRect);
     
     if(!isClickingBackButton) SDL_RenderCopy(renderer, BackButton, nullRect, &BackButtonRect);
     else SDL_RenderCopy(renderer, BackButtonDown, nullRect, &BackButtonRect);
@@ -75,13 +77,15 @@ void ChooseGamemode(){
         }
         
         if(event.type == SDL_MOUSEBUTTONUP){
-            if(isClickingNormalButton){
+            if(isClickingNormalButton && ChooseNormal()){
                 GameMode = "NORMAL";
                 GUI = "MainGameplay";
-            }else if(isClickingSpeedrunButton){
+                Restart();
+            }else if(isClickingSpeedrunButton && ChooseSpeedrun()){
                 GameMode = "SPEEDRUN";
                 GUI = "MainGameplay";
-            }else if(isClickingBackButton){
+                Restart();
+            }else if(isClickingBackButton && ChooseBack()){
                 GUI = "MainMenu";
             }
             isClickingNormalButton = false;

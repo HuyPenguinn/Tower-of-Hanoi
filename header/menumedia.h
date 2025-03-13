@@ -18,6 +18,7 @@ extern SDL_Texture *HowToPlayButtonDown;
 extern SDL_Texture *NormalButton;
 extern SDL_Texture *NormalButtonDown;
 
+extern SDL_Texture *LockedSpeedrunButton;
 extern SDL_Texture *SpeedrunButton;
 extern SDL_Texture *SpeedrunButtonDown;
 

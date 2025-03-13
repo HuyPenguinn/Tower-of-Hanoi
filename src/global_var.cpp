@@ -22,4 +22,4 @@ bool GAMESTARTED = false;
 int isHolding = 0;
 int target = 0;
 int x, y, MoveCount = 0;
-bool isRunning = true, ValidDrop = true, OpeningCursor = true, RestartClicked = false;
+bool isRunning = true, ValidDrop = true, OpeningCursor = true, isClickingRestartButton = false, isCLickingHomeButton = false;

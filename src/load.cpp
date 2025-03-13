@@ -8,18 +8,19 @@ void GetConfig(){
     std::ifstream ifs((BasePath + "/data/config.txt").c_str());
     std::string s;
     getline(ifs, s);//Max Star
-    for(int i = 12; i < s.size() - 1; i++){
-        MaxStar += s[i];
-    }
+    MaxStar = s[12];
     getline(ifs, s);// CursorConfig
-    for(int i = 10; i < s.size() - 1; i++){
+    CursorConfig = "";
+    for(int i = 16; i < s.size() - 1; i++){
         CursorConfig += s[i];
     }
     getline(ifs, s); // Background Music
+    BackgroundMusicConfig = "";
     for(int i = 20; i < s.size() - 1; i++){
         BackgroundMusicConfig += s[i];
     }
     getline(ifs, s); // Sound Effect
+    SoundEffectConfig = "";
     for(int i = 16; i < s.size() - 1; i++){
         SoundEffectConfig += s[i];
     }
@@ -99,8 +100,8 @@ void LoadMenuButtons(){
     NormalButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/NormalButton.png").c_str());
     NormalButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/NormalButtonDown.png").c_str());
     
-    if(MaxStar == "3") SpeedrunButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/SpeedrunButton.png").c_str());
-    else SpeedrunButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/LockedSpeedrunButton.png").c_str());
+    SpeedrunButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/SpeedrunButton.png").c_str());
+    LockedSpeedrunButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/LockedSpeedrunButton.png").c_str());
     SpeedrunButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/SpeedrunButtonDown.png").c_str());
 }
 void LoadMedia(){

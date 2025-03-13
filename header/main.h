@@ -9,6 +9,7 @@ void InitSDL();
 void InitPoles();
 void LoadMedia();
 void GetConfig();
+void UpdateConfig();
 
 void MainGameplay();
 void MainMenu();

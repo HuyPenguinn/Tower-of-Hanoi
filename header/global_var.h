@@ -18,7 +18,7 @@ extern std::string SoundEffectConfig;
 extern std::string GUI;
 extern std::string BasePath;
 
-extern bool isRunning, ValidDrop, OpeningCursor, RestartClicked, GAMESTARTED;
+extern bool isRunning, ValidDrop, OpeningCursor, isClickingRestartButton, GAMESTARTED, isCLickingHomeButton;
 extern int isHolding, target, MoveCount;
 
 extern SDL_Rect* nullRect;
@@ -29,3 +29,5 @@ extern SDL_Surface* nullSurface;
 extern Mix_Music* nullMusic;
 extern Mix_Chunk* nullChunk;
 extern TTF_Font* nullFont;
+
+int to_int(std::string s);

@@ -1,4 +1,6 @@
 #include <windows.h>
+#include <fstream>
+#include <iostream>
 #include "main.h"
 int main(int argc,char **argv){
     // FreeConsole();
@@ -7,8 +9,8 @@ int main(int argc,char **argv){
     InitSDL();
     InitPoles();
     LoadMedia();
-
     GetConfig();
+
     bool isLoaded = false;
 //////////          GAMELOOP          //////////
     while(isRunning){
@@ -29,11 +31,12 @@ int main(int argc,char **argv){
         }
         else if(GUI == "Config"){
             Config();
+            UpdateConfig();
+            GetConfig();
         }
         else if(GUI == "HowToPlay"){
             // HowToPlay Window
         }else if(GUI == "ChooseGamemode"){
-            // ChooseGamemode Window
             ChooseGamemode();
         }
 
