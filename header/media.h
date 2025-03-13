@@ -28,7 +28,6 @@ extern SDL_Color textColor, scoreColor;
 extern SDL_Surface *textSurface;
 extern SDL_Surface *ScoreSurface;
 
-extern Mix_Music *BG_music;
 extern Mix_Chunk *DropSound;
 extern Mix_Chunk *WinSound;
 extern TTF_Font *font;

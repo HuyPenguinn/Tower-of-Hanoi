@@ -5,7 +5,9 @@
 #include "config.h"
 #include <fstream>
 
-
+SDL_Texture *ConfigButton_BGMusic = IMG_LoadTexture(renderer, (BasePath + "/data/image/MenuButtons/ConfigButton_BGMusic.png").c_str());
+SDL_Texture *ConfigButton_SoundEffect = IMG_LoadTexture(renderer, (BasePath + "/data/image/MenuButtons/ConfigButton_SoundEffect.png").c_str());
+SDL_Texture *ConfigButton_Cursor = IMG_LoadTexture(renderer, (BasePath + "/data/image/MenuButtons/ConfigButton_Cursor.png").c_str());
 
 void UpdateConfig(){
     std::ofstream ofs((BasePath + "/data/config.txt").c_str());

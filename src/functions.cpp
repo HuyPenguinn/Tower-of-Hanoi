@@ -1,6 +1,9 @@
 #include "global_var.h"
 #include "def.h"
 #include "draw.h"
+#include "menumedia.h"
+#include "gameplay.h"
+#include "config.h"
 #include <iomanip>
 void InitSDL(){
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -39,6 +42,10 @@ void CleanUp(){
     TTF_CloseFont(font);
     SDL_FreeSurface(textSurface);
     SDL_FreeSurface(ScoreSurface);
+    SDL_DestroyTexture(ConfigButton_BGMusic);
+    SDL_DestroyTexture(ConfigButton_Cursor);
+    SDL_DestroyTexture(ConfigButton_SoundEffect);
+    SDL_DestroyTexture(MenuBackground);
     SDL_DestroyTexture(textTexture);
     SDL_DestroyTexture(ScoreTexture);
     SDL_DestroyTexture(CloudBackground);

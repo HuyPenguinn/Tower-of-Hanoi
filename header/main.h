@@ -4,7 +4,6 @@
 #include "global_var.h"
 #include "gameplay.h"
 
-
 void InitSDL();
 void InitPoles();
 void LoadMedia();

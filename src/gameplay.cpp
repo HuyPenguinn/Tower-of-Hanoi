@@ -24,8 +24,16 @@ void LoadGameplayMedia(){
     
     if(GameMode == "NORMAL") BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic.mp3").c_str());
     else if(GameMode == "SPEEDRUN") BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic2.mp3").c_str());
+    else BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic.mp3").c_str());
 
     DropSound = Mix_LoadWAV((BasePath + "/data/audio/Droplet.wav").c_str());
+}
+
+void ChangeMusic(){
+    Mix_FreeMusic(BG_music);
+    if(GameMode == "NORMAL" || GUI == "MainMenu") BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic.mp3").c_str());
+    else if(GameMode == "SPEEDRUN") BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic2.mp3").c_str());
+    else BG_music = Mix_LoadMUS((BasePath + "/data/audio/BGmusic.mp3").c_str());
 }
 
 void MainGameplay(){
@@ -66,6 +74,10 @@ void MainGameplay(){
                 isClickingRestartButton = true;
             }else if(x >= 780 && x <= 820 && y >= 20 && y <= 60){// Home button
                 isCLickingHomeButton = true;
+                if(SoundEffectConfig != "0"){
+                    Mix_VolumeChunk(DropSound, to_int(SoundEffectConfig));
+                    Mix_PlayChannel(-1, DropSound, 0);
+                }
             }
             
         }
@@ -76,6 +88,7 @@ void MainGameplay(){
             }
             if(isCLickingHomeButton){
                 GUI = "MainMenu";
+                if(GameMode == "SPEEDRUN") isLoaded = false;
                 isCLickingHomeButton = false;
             }
             SDL_GetMouseState(&x, &y);

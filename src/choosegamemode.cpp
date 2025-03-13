@@ -80,10 +80,15 @@ void ChooseGamemode(){
             if(isClickingNormalButton && ChooseNormal()){
                 GameMode = "NORMAL";
                 GUI = "MainGameplay";
+                // Mix_PauseMusic();
+                ChangeMusic();
                 Restart();
             }else if(isClickingSpeedrunButton && ChooseSpeedrun()){
                 GameMode = "SPEEDRUN";
                 GUI = "MainGameplay";
+                // Mix_PauseMusic();
+                ChangeMusic();
+                // BG_music = Mix_LoadMUS((BasePath + "data/sound/BGmusic2.mp3").c_str());
                 Restart();
             }else if(isClickingBackButton && ChooseBack()){
                 GUI = "MainMenu";

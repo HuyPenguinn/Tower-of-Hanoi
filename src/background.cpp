@@ -2,6 +2,7 @@
 #include "def.h"
 #include "media.h"
 #include "draw.h"
+#include "main.h"
 
 void Toolbar(){
     SDL_Rect HUDRect = {0, 0, 900, 80};

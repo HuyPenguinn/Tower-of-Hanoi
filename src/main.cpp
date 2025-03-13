@@ -2,16 +2,18 @@
 #include <fstream>
 #include <iostream>
 #include "main.h"
+
+bool isLoaded = false;
+
 int main(int argc,char **argv){
-    // FreeConsole();
+    FreeConsole();
 
 //////////          INITIALIZATION          //////////
     InitSDL();
     InitPoles();
     LoadMedia();
     GetConfig();
-
-    bool isLoaded = false;
+    LoadGameplayMedia();
 //////////          GAMELOOP          //////////
     while(isRunning){
 
@@ -19,14 +21,22 @@ int main(int argc,char **argv){
         SDL_RenderClear(renderer);
         SDL_GetMouseState(&x, &y);
 
-        if(GUI == "MainGameplay") {
-            if(!isLoaded) {
-                LoadGameplayMedia();
-                isLoaded = true;
-            }
+        if(Mix_PlayingMusic() == 0)
+            Mix_PlayMusic(BG_music, -1);    
+
+        if(GUI == "MainGameplay"){
+            // if(!isLoaded && GameMode == "SPEEDRUN") {
+            //     ChangeMusic();
+            //     isLoaded = true;
+            // }
+            
             MainGameplay();
         }
         else if(GUI == "MainMenu"){
+            // if(!isLoaded && GameMode != "SPEEDRUN") {
+            //     ChangeMusic();
+            //     isLoaded = true;
+            // }
             MainMenu();
         }
         else if(GUI == "Config"){

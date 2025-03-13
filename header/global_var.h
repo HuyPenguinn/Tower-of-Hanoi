@@ -29,5 +29,7 @@ extern SDL_Surface* nullSurface;
 extern Mix_Music* nullMusic;
 extern Mix_Chunk* nullChunk;
 extern TTF_Font* nullFont;
+extern Mix_Music *BG_music;
 
 int to_int(std::string s);
+void ChangeMusic();
