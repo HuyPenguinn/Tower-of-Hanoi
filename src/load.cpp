@@ -109,8 +109,8 @@ void LoadMedia(){
     LoadMenuBackground();
     LoadMenuButtons();
 
-    if(CursorConfig == "Default") SDL_ShowCursor(SDL_DISABLE);
+    if(CursorConfig != "Window") SDL_ShowCursor(SDL_DISABLE);
     else if(CursorConfig == "Window") SDL_ShowCursor(SDL_ENABLE);
-    if(CursorConfig == "Default") Cursor = IMG_LoadTexture(renderer, (BasePath + "/data/image/cursor.png").c_str());
+    if(CursorConfig == "Hand") Cursor = IMG_LoadTexture(renderer, (BasePath + "/data/image/cursor.png").c_str());
 
 }

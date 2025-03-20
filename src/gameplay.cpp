@@ -2,7 +2,7 @@
 #include "def.h"
 #include "gameplay.h"
 #include "draw.h"
-
+#include "main.h"
 void LoadGameplayMedia(){
     font = TTF_OpenFont((BasePath + "/data/font/8514oem.ttf").c_str(), 32);
     
@@ -45,7 +45,16 @@ void MainGameplay(){
 //////////          WIN          //////////
     if (Win()) {
         SDL_RenderCopy(renderer, WinTexture, nullRect, nullRect); 
-
+        int star = 1;
+        if(MoveCount == 31){
+            star = 3;
+        }else if(MoveCount <= 36){
+            star = 2;
+        }
+        if(star > MaxStar[0] - '0'){
+            MaxStar = char(star + '0');
+            UpdateConfig();
+        }
         if (GameMode == "NORMAL") DrawStar(MoveCount);
         else if (GameMode == "SPEEDRUN") DrawTimeScore(CurrentTime);
         

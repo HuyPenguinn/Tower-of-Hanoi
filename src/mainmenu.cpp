@@ -49,6 +49,7 @@ void MainMenu(){
         }
 
         if(event.type == SDL_MOUSEBUTTONDOWN){
+            OpeningCursor = false;
             if(x >= StartButtonRect.x && x <= StartButtonRect.x + StartButtonRect.w && y >= StartButtonRect.y && y <= StartButtonRect.y + StartButtonRect.h){
 
                 isClickingStartButton = true;
@@ -62,6 +63,7 @@ void MainMenu(){
         }
        
         if(event.type == SDL_MOUSEBUTTONUP){
+            OpeningCursor = true;
             if(isClickingStartButton){
                 GUI = "ChooseGamemode";
                 isClickingStartButton = false;

@@ -44,6 +44,7 @@ void Config(){
             isRunning = false;
         }
         if(event.type == SDL_MOUSEBUTTONDOWN){
+            OpeningCursor = false;
             if(event.button.button == SDL_BUTTON_LEFT){
                 if(x >= 260 && x <= 640 && y >= 400 && y <= 460){
                     isClickingBackButton = true;
@@ -51,6 +52,7 @@ void Config(){
             }
         }
         if(event.type == SDL_MOUSEBUTTONUP){
+            OpeningCursor = true;
             if(event.button.button == SDL_BUTTON_LEFT){
                 if(isClickingBackButton){
                     GUI = "MainMenu";

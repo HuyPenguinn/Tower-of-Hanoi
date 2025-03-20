@@ -11,8 +11,8 @@ int main(int argc,char **argv){
 //////////          INITIALIZATION          //////////
     InitSDL();
     InitPoles();
-    LoadMedia();
     GetConfig();
+    LoadMedia();
     LoadGameplayMedia();
 //////////          GAMELOOP          //////////
     while(isRunning){
@@ -25,18 +25,10 @@ int main(int argc,char **argv){
             Mix_PlayMusic(BG_music, -1);    
 
         if(GUI == "MainGameplay"){
-            // if(!isLoaded && GameMode == "SPEEDRUN") {
-            //     ChangeMusic();
-            //     isLoaded = true;
-            // }
             
             MainGameplay();
         }
         else if(GUI == "MainMenu"){
-            // if(!isLoaded && GameMode != "SPEEDRUN") {
-            //     ChangeMusic();
-            //     isLoaded = true;
-            // }
             MainMenu();
         }
         else if(GUI == "Config"){
@@ -45,7 +37,7 @@ int main(int argc,char **argv){
             GetConfig();
         }
         else if(GUI == "HowToPlay"){
-            // HowToPlay Window
+            HowToPlay();
         }else if(GUI == "ChooseGamemode"){
             ChooseGamemode();
         }

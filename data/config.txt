@@ -1,4 +1,4 @@
-Max Star = "3"
-CursorConfig = "Window"
+Max Star = "1"
+CursorConfig = "Hand"
 Background Music = "100"
 Sound Effect = "100"

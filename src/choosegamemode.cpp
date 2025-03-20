@@ -63,6 +63,7 @@ void ChooseGamemode(){
             isRunning = false;
         }
         if(event.type == SDL_MOUSEBUTTONDOWN){
+            OpeningCursor = false;
             if(ChooseNormal()){
                 isClickingNormalButton = true;
             }else if(ChooseSpeedrun()){
@@ -77,6 +78,7 @@ void ChooseGamemode(){
         }
         
         if(event.type == SDL_MOUSEBUTTONUP){
+            OpeningCursor = true;
             if(isClickingNormalButton && ChooseNormal()){
                 GameMode = "NORMAL";
                 GUI = "MainGameplay";
