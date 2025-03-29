@@ -25,6 +25,8 @@ void GetConfig(){
         SoundEffectConfig += s[i];
     }
     ifs.close();
+    Mix_VolumeMusic(std::stoi(BackgroundMusicConfig) * 128 / 100);
+    Mix_Volume(-1, std::stoi(SoundEffectConfig) * 128 / 100);
 }
 
 void LoadClouds(){

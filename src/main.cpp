@@ -16,7 +16,7 @@ int main(int argc,char **argv){
     LoadGameplayMedia();
 //////////          GAMELOOP          //////////
     while(isRunning){
-
+        
         SDL_SetRenderDrawColor(renderer, 135, 206, 235, 255);
         SDL_RenderClear(renderer);
         SDL_GetMouseState(&x, &y);
@@ -25,7 +25,6 @@ int main(int argc,char **argv){
             Mix_PlayMusic(BG_music, -1);    
 
         if(GUI == "MainGameplay"){
-            
             MainGameplay();
         }
         else if(GUI == "MainMenu"){
