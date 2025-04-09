@@ -105,6 +105,12 @@ void LoadMenuButtons(){
     SpeedrunButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/SpeedrunButton.png").c_str());
     LockedSpeedrunButton = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/LockedSpeedrunButton.png").c_str());
     SpeedrunButtonDown = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/SpeedrunButtonDown.png").c_str());
+    
+    ConfigButton_BGMusic = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/ConfigButton_BGMusic.png").c_str());
+    ConfigButton_SoundEffect = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/ConfigButton_SoundEffect.png").c_str());
+    ConfigButton_Cursor = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/ConfigButton_Cursor.png").c_str());
+    ConfigButton_WindowCursor = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/WindowCursorButton.png").c_str());
+    ConfigButton_HandCursor = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/HandCursorButton.png").c_str());
 }
 void LoadMedia(){
     LoadClouds();

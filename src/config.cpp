@@ -4,10 +4,11 @@
 #include "menumedia.h"
 #include "config.h"
 #include <fstream>
+#include "SDL2/SDL_image.h"
 
-SDL_Texture *ConfigButton_BGMusic = IMG_LoadTexture(renderer, (BasePath + "/data/image/MenuButtons/ConfigButton_BGMusic.png").c_str());
-SDL_Texture *ConfigButton_SoundEffect = IMG_LoadTexture(renderer, (BasePath + "/data/image/MenuButtons/ConfigButton_SoundEffect.png").c_str());
-SDL_Texture *ConfigButton_Cursor = IMG_LoadTexture(renderer, (BasePath + "/data/image/MenuButtons/ConfigButton_Cursor.png").c_str());
+// SDL_Texture *ConfigButton_BGMusic = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/ConfigButton_BGMusic.png").c_str());
+// SDL_Texture *ConfigButton_SoundEffect = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/ConfigButton_SoundEffect.png").c_str());
+// SDL_Texture *ConfigButton_Cursor = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/ConfigButton_Cursor.png").c_str());
 
 bool isClickingBackgroundMusicMinusButton = false;
 bool isClickingBackgroundMusicPlusButton = false;
@@ -25,8 +26,9 @@ void UpdateConfig(){
     ofs.close();
 }
 
-void DrawSettingButtons(int _x, int _y, int _w, int _h, bool isPlus, bool isClicking){
+void DrawSettingButtons(int _x, int _y, int _w, int _h, char c, bool isClicking){
     SDL_Rect ButtonRect = {_x, _y, _w, _h};
+    bool isPlus = c == '+';
     if(!isPlus){//Minus
         if(isClicking){
             SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
@@ -66,11 +68,15 @@ void DrawSettingButtons(int _x, int _y, int _w, int _h, bool isPlus, bool isClic
 
 void DrawConfigButtons(){
     SDL_Rect BackgroundMusicLev = {320 + (BackgroundMusicConfig == "0" ? 0 : std::stoi(BackgroundMusicConfig) * 5), 90, 20, 40};
-    SDL_Rect BackgroundMusicLine = {320, 100, 510, 20};
+    SDL_Rect BackgroundMusicLine = {320, 100, 520, 20};
     SDL_Rect SoundEffectLev = {320 + (SoundEffectConfig == "0" ? 0 : std::stoi(SoundEffectConfig) * 5), 190, 20, 40};
-    SDL_Rect SoundEffectLine = {320, 200, 510, 20};
+    SDL_Rect SoundEffectLine = {320, 200, 520, 20};
     SDL_Rect BackButtonRect = {260, 400, 380, 60};
-    
+    SDL_Rect BG_Music_Rect = {60, 80, 200, 60};
+    SDL_Rect SoundEffect_Rect = {60, 180, 200, 60};
+    SDL_Rect CursorConfig_Rect = {60, 280, 200, 60};
+    SDL_Rect WindowCursor_Rect = {300, 280, 200, 60};
+    SDL_Rect HandCursor_Rect = {540, 280, 200, 60};
     if(!isClickingBackButton) SDL_RenderCopy(renderer, BackButton, nullRect, &BackButtonRect);
     else SDL_RenderCopy(renderer, BackButtonDown, nullRect, &BackButtonRect);
     
@@ -80,30 +86,24 @@ void DrawConfigButtons(){
     SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
     SDL_RenderFillRect(renderer, &SoundEffectLev);
     SDL_RenderFillRect(renderer, &BackgroundMusicLev);
-    
-    DrawSettingButtons(280, 95, 30, 30, false, isClickingBackgroundMusicMinusButton);
-    DrawSettingButtons(280, 195, 30, 30, false, isClickingSoundEffectMinusButton);
-    DrawSettingButtons(840, 95, 30, 30, true, isClickingBackgroundMusicPlusButton);
-    DrawSettingButtons(840, 195, 30, 30, true, isClickingSoundEffectPlusButton);
+    SDL_RenderCopy(renderer, ConfigButton_BGMusic, nullRect, &BG_Music_Rect);
+    SDL_RenderCopy(renderer, ConfigButton_SoundEffect, nullRect, &SoundEffect_Rect);
+    SDL_RenderCopy(renderer, ConfigButton_Cursor, nullRect, &CursorConfig_Rect);
+    SDL_RenderCopy(renderer, ConfigButton_WindowCursor, nullRect, &WindowCursor_Rect);
+    SDL_RenderCopy(renderer, ConfigButton_HandCursor, nullRect, &HandCursor_Rect);
+    //60, 90, 200, 40
+    //60, 190, 200, 40
+    DrawSettingButtons(280, 95, 30, 30, '-', isClickingBackgroundMusicMinusButton);
+    DrawSettingButtons(280, 195, 30, 30, '-', isClickingSoundEffectMinusButton);
+    DrawSettingButtons(850, 95, 30, 30, '+', isClickingBackgroundMusicPlusButton);
+    DrawSettingButtons(850, 195, 30, 30, '+', isClickingSoundEffectPlusButton);
 }
-// void DrawConfigButtons(){
-//     SDL_Rect BackButtonRect = {260, 400, 380, 60};
-//     if(!isClickingBackButton) SDL_RenderCopy(renderer, BackButton, nullRect, &BackButtonRect);
-//     else SDL_RenderCopy(renderer, BackButtonDown, nullRect, &BackButtonRect);
-    
-//     SDL_Rect BackgroundMusicLine = {320, 100, 500, 20};
-//     SDL_Rect SoundEffectLine = {320, 200, 500, 20};
-
-//     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-//     SDL_RenderFillRect(renderer, &BackgroundMusicLine);
-//     SDL_RenderFillRect(renderer, &SoundEffectLine);
-
-// }
-
 
 void Config(){
     SDL_RenderCopy(renderer, MenuBackground, nullRect, nullRect);
-
+    if(ConfigButton_BGMusic == nullptr) std::cout << "BG_Music button texture is null" << std::endl;
+    if(ConfigButton_SoundEffect == nullptr) std::cout << "SoundEffect button texture is null" << std::endl;
+    if(ConfigButton_Cursor == nullptr) std::cout << "Cursor button texture is null" << std::endl;
     DrawConfigButtons();
 
     while(SDL_PollEvent(&event)){
@@ -125,12 +125,12 @@ void Config(){
                     if(SoundEffectConfig != "0"){
                         if(std::stoi(SoundEffectConfig) > 0) SoundEffectConfig = std::to_string(std::stoi(SoundEffectConfig) - 5);
                     }
-                }else if(x >= 840 && x <= 870 && y >= 95 && y <= 125){
+                }else if(x >= 850 && x <= 880 && y >= 95 && y <= 125){
                     isClickingBackgroundMusicPlusButton = true;
                     if(BackgroundMusicConfig != "100"){
                         if(std::stoi(BackgroundMusicConfig) < 100) BackgroundMusicConfig = std::to_string(std::stoi(BackgroundMusicConfig) + 5);
                     }
-                }else if(x >= 840 && x <= 870 && y >= 195 && y <= 225){
+                }else if(x >= 850 && x <= 880 && y >= 195 && y <= 225){
                     isClickingSoundEffectPlusButton = true;
                     if(SoundEffectConfig != "100"){
                         if(std::stoi(SoundEffectConfig) < 100) SoundEffectConfig = std::to_string(std::stoi(SoundEffectConfig) + 5);

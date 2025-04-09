@@ -18,10 +18,17 @@ SDL_Texture *OneStar = nullTexture;
 SDL_Texture *TwoStar = nullTexture;
 SDL_Texture *ThreeStar = nullTexture;
 SDL_Texture *Cursor = nullTexture;
+SDL_Texture *ConfigButton_BGMusic = nullTexture;
+SDL_Texture *ConfigButton_SoundEffect = nullTexture;
+SDL_Texture *ConfigButton_Cursor = nullTexture;
+SDL_Texture *ConfigButton_WindowCursor = nullTexture;
+SDL_Texture *ConfigButton_HandCursor = nullTexture;
+
 SDL_Texture *CloudBackground = nullTexture;
 SDL_Texture *textTexture = nullTexture;
 SDL_Texture *ScoreTexture = nullTexture;
 SDL_Surface *textSurface = nullSurface;
 SDL_Surface *ScoreSurface = nullSurface;
+
 
 SDL_Color textColor = {255, 255, 255, 255}, scoreColor = {255, 0, 0, 255};

@@ -6,8 +6,8 @@
 bool isLoaded = false;
 
 int main(int argc,char **argv){
-    FreeConsole();
-
+    // FreeConsole();
+    
 //////////          INITIALIZATION          //////////
     InitSDL();
     InitPoles();
