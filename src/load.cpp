@@ -119,6 +119,7 @@ void LoadMedia(){
 
     if(CursorConfig != "Window") SDL_ShowCursor(SDL_DISABLE);
     else if(CursorConfig == "Window") SDL_ShowCursor(SDL_ENABLE);
-    if(CursorConfig == "Hand") Cursor = IMG_LoadTexture(renderer, (BasePath + "/data/image/cursor.png").c_str());
+    // if(CursorConfig == "Hand") 
+    Cursor = IMG_LoadTexture(renderer, (BasePath + "/data/image/cursor.png").c_str());
 
 }

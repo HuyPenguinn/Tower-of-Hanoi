@@ -42,7 +42,9 @@ int main(int argc,char **argv){
         }
 
 
-        if(CursorConfig != "Window") DrawCursor(!OpeningCursor);
+        if(CursorConfig != "Window") {
+            DrawCursor(!OpeningCursor);
+        }
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
     }

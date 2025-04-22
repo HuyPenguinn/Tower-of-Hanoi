@@ -136,7 +136,22 @@ void Config(){
                         if(std::stoi(SoundEffectConfig) < 100) SoundEffectConfig = std::to_string(std::stoi(SoundEffectConfig) + 5);
                     }
                 }
-
+                //
+    // SDL_Rect WindowCursor_Rect = {300, 280, 200, 60};
+    // SDL_Rect HandCursor_Rect = {540, 280, 200, 60};
+                else if(x >= 300 && x <= 500 && y >= 280 && y <= 340){
+                        std::cout << "window" << std::endl;
+                    if(CursorConfig != "Window"){
+                        CursorConfig = "Window";
+                        SDL_ShowCursor(SDL_ENABLE);
+                    }
+                }else if(x >= 540 && x <= 740 && y >= 280 && y <= 340){
+                    std::cout << "hand" << std::endl;
+                    if(CursorConfig != "Hand"){
+                        CursorConfig = "Hand";
+                        SDL_ShowCursor(SDL_DISABLE);
+                    }
+                }
             }
         }
         if(event.type == SDL_MOUSEBUTTONUP){

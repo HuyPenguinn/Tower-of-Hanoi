@@ -84,8 +84,10 @@ void DrawCursor(bool closing){
     SDL_GetMouseState(&x, &y);
     CursorRect.x = x;
     CursorRect.y = y;
-    if(closing)
+    if(closing){
+        std::cout << 1 << std::endl;
         SDL_RenderCopy(renderer, Cursor, &CloseCursorSrc, &CursorRect);
+    }
     else
         SDL_RenderCopy(renderer, Cursor, &OpenCursorSrc, &CursorRect);
 }
