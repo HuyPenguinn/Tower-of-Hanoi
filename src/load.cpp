@@ -2,6 +2,7 @@
 #include "def.h"
 #include "media.h"
 #include "menumedia.h"
+#include "howtoplay.h"
 #include <fstream>
 
 void GetConfig(){
@@ -112,9 +113,19 @@ void LoadMenuButtons(){
     ConfigButton_WindowCursor = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/WindowCursorButton.png").c_str());
     ConfigButton_HandCursor = IMG_LoadTexture(renderer, (BasePath + "data/image/MenuButtons/HandCursorButton.png").c_str());
 }
+
+void LoadGameRules(){
+    GameRules = IMG_LoadTexture(renderer, (BasePath + "data/image/HowToPlay.png").c_str());
+    if(GameRules == nullTexture){
+        std::cout << "Error: GameRules" << std::endl;
+        std::cout << SDL_GetError() << std::endl;
+    }
+}
+
 void LoadMedia(){
     LoadClouds();
     LoadMenuBackground();
+    LoadGameRules();
     LoadMenuButtons();
 
     if(CursorConfig != "Window") SDL_ShowCursor(SDL_DISABLE);

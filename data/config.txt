@@ -1,4 +1,4 @@
 Max Star = "3"
 CursorConfig = "Window"
-Background Music = "0"
-Sound Effect = "15"
+Background Music = "25"
+Sound Effect = "20"
